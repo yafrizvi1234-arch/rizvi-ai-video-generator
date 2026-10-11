@@ -1,1 +1,112 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIZVI AI LAB | Video Generator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #080b16;
+      color: #fff;
+      padding: 20px;
+    }
+    .app {
+      max-width: 650px;
+      margin: 35px auto;
+      background: #11182a;
+      border: 1px solid #293653;
+      border-radius: 22px;
+      padding: 24px;
+    }
+    h1 { color: #72a7ff; font-size: 27px; }
+    p { color: #aab8d3; line-height: 1.6; }
+    textarea, select {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid #354461;
+      background: #090f20;
+      color: white;
+      font-size: 15px;
+    }
+    textarea { height: 120px; resize: vertical; }
+    button {
+      width: 100%;
+      padding: 15px;
+      border: 0;
+      border-radius: 12px;
+      background: #3978ff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .preview {
+      margin-top: 22px;
+      min-height: 150px;
+      border: 1px dashed #52668d;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+      color: #aab8d3;
+      overflow-wrap: anywhere;
+    }
+    .small { font-size: 12px; }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>✨ RIZVI AI LAB</h1>
+    <p>তোমার কল্পনাকে AI ভিডিওতে রূপ দাও।</p>
+
+    <label for="prompt">ভিডিওর বর্ণনা লেখো</label>
+    <textarea id="prompt" placeholder="যেমন: A beautiful mosque at sunrise, cinematic camera movement..."></textarea>
+
+    <label for="ratio">ভিডিওর অনুপাত</label>
+    <select id="ratio">
+      <option value="16:9">16:9 — YouTube</option>
+      <option value="9:16">9:16 — Shorts / Reels</option>
+      <option value="1:1">1:1 — Square</option>
+    </select>
+
+    <button id="generate">ভিডিও তৈরি করার অনুরোধ</button>
+
+    <section class="preview" id="preview" aria-live="polite">
+      তোমার ভিডিওর Preview এখানে দেখা যাবে।
+    </section>
+
+    <p class="small">
+      প্রাথমিক সংস্করণ — আসল AI ভিডিও তৈরির API এখনো যুক্ত করা হয়নি।
+    </p>
+  </main>
+
+  <script>
+    const promptInput = document.getElementById("prompt");
+    const ratioInput = document.getElementById("ratio");
+    const preview = document.getElementById("preview");
+    const generate = document.getElementById("generate");
+
+    generate.addEventListener("click", () => {
+      const prompt = promptInput.value.trim();
+
+      if (!prompt) {
+        preview.textContent = "প্রথমে ভিডিওর বর্ণনা লেখো!";
+        return;
+      }
+
+      preview.textContent =
+        "তোমার Prompt: " + prompt +
+        " | অনুপাত: " + ratioInput.value +
+        " | পরবর্তী ধাপে AI ভিডিও API যুক্ত করতে হবে।";
+    });
+  </script>
+</body>
+</html>
